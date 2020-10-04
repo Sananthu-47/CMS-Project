@@ -65,3 +65,10 @@
   cursor: pointer;
 }
 
+#prevviewPost
+{
+  width: 300px;
+  height: auto;
+  cursor: pointer;
+}
+

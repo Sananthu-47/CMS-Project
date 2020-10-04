@@ -28,10 +28,10 @@
       <option value='Published'>Published</option>
     </select>
   </div>
-    <div class="form-group col-sm-4 col-md-6">
+    <div class="form-group col-sm-12 col-md-6">
       <label for="image">Image</label>
-      <input name="post-image" type="file" id="image"><br/>
-      <img src="../images/" id="preview" class="w-75 h-50" alt="">
+      <input name="post-image" class='d-none' onchange="displayImage(this)" type="file" id="image"><br/>
+      <img src="../images/profile.jpg" id="previewPost" class="w-75 h-50" alt="">
     </div>
     <div class="form-group col-sm-12 col-md-6">
       <label for="tags">Tags</label>
@@ -50,14 +50,23 @@
 
 <script>
 let chooseImage = document.getElementById('image');
-chooseImage.addEventListener('change',()=>{
-  let selectedImage = chooseImage.value;
-  if(selectedImage!==undefined)
+let imagePlaceholder = document.getElementById('previewPost');
+if(chooseImage)
 {
-  document.getElementById('preview').src='../images/'+selectedImage.slice(12,);
-}
+imagePlaceholder.addEventListener('click',()=>{
+  chooseImage.click();
 });
-setTimeout(()=>{
-    document.querySelector('.alert-cls').style.display="none";
-}, 3000);
+}
+
+function displayImage(e) {
+  if(e.files[0])
+  {
+    let reader = new FileReader();
+    reader.onload = (e)=>{
+      document.getElementById('previewPost').setAttribute('src', e.target.result);
+    }
+    reader.readAsDataURL(e.files[0]);
+  }
+}
+
 </script>

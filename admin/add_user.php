@@ -42,6 +42,14 @@
 </div>
 
 <script>
+let chooseImage = document.getElementById('image');
+let imagePlaceholder = document.getElementById('preview');
+if(chooseImage)
+{
+imagePlaceholder.addEventListener('click',()=>{
+  chooseImage.click();
+});
+}
 
 function displayImage(e) {
   if(e.files[0])
