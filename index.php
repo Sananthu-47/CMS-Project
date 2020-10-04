@@ -32,7 +32,7 @@ while($row = mysqli_fetch_assoc($result))
   ?>
 <div class="d-flex flex-column justify-content-center m-2">
         <a href="individual_post.php?post_id=<?php echo $post_id; ?>"><h1 class="text-primary"><?php echo $post_title ?></h1></a>
-            <h6 class="text-dark">by <span class="text-primary"><?php echo "<a href=''>$post_user</a>"?></span></h6>
+            <h6 class="text-dark">by <span class="text-primary"><?php echo "<a href='specific_user.php?post_user={$post_user}'>$post_user</a>"?></span></h6>
             <h6 class="text-dark"><?php echo $post_date?></h6>
         <div style="height: 200px;" class="bg-light">
         <a href="individual_post.php?post_id=<?php echo $post_id; ?>"><img src="./images/<?php echo $post_image ?>" class="col-lg-10 col-xl-9 col-md-11 col-xs-12 col-sm-12 h-100" alt="Loading image"></a>
