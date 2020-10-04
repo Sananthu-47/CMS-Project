@@ -440,7 +440,7 @@ if(isset($_POST['add_user']))
     $user_firstname = $_POST['user_firstname'];
     $user_lastname = $_POST['user_lastname'];
     $user_role = $_POST['user_role'];
-    $user_image = $_FILES['user_image']['name'];
+    $user_image =time(). '_' .$_FILES['user_image']['name'];
     $user_image_temp = $_FILES['user_image']['tmp_name'];
     $user_email = $_POST['user_email'];
     $user_password = $_POST['user_password'];
@@ -521,7 +521,7 @@ function updateUser($user_id)
     $user_firstname = $_POST['user_firstname'];
     $user_lastname = $_POST['user_lastname'];
     $user_role = $_POST['user_role'];
-    $user_image = $_FILES['user_image']['name'];
+    $user_image = time(). '_' .$_FILES['user_image']['name'];
     $user_image_temp = $_FILES['user_image']['tmp_name'];
     $user_email = $_POST['user_email'];
     $user_password = $_POST['user_password'];

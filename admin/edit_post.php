@@ -76,15 +76,5 @@ $query = "SELECT * FROM posts WHERE post_id = {$post_id}";
 </div>
 
 <script>
-let chooseImage = document.getElementById('image');
-chooseImage.addEventListener('change',()=>{
-  let selectedImage = chooseImage.value;
-  if(selectedImage!==undefined)
-{
-  document.getElementById('preview').src='../images/'+selectedImage.slice(12,);
-}
-});
-setTimeout(()=>{
-    document.querySelector('.alert-cls').style.display='none';
-}, 3000);
+
 </script>

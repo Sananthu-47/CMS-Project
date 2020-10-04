@@ -53,5 +53,15 @@ selecAllBtn.addEventListener('click',()=>{
 });
 }
 
+let chooseImage = document.getElementById('image');
+let imagePlaceholder = document.getElementById('preview');
+
+if(chooseImage || imagePlaceholder)
+{
+imagePlaceholder.addEventListener('click',()=>{
+  chooseImage.click();
+});
+}
+
 
 };

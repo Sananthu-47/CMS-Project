@@ -24,8 +24,5 @@
 
 <script>
 
-setTimeout(()=>{
-    document.querySelector('.alert-cls').style.display="none";
-}, 3000);
 </script>
 

@@ -31,8 +31,8 @@
     </div>
     <div class="form-group col-sm-4 col-md-6">
       <label for="user_image">Image</label>
-      <input name="user_image" type="file" id="image"><br/>
-      <img src="../images/" id="preview" class="w-75 h-50" alt="">
+      <input name="user_image" class='d-none' onchange="displayImage(this)" type="file" id="image"><br/>
+      <img src="../images/profile.jpg" id="preview" alt="">
     </div>
     <div class="form-group col-sm-12 col-md-6 text-center">
   <input type="submit" name="add_user" value="Add" class="btn btn-primary w-50">
@@ -42,15 +42,17 @@
 </div>
 
 <script>
-let chooseImage = document.getElementById('image');
-chooseImage.addEventListener('change',()=>{
-  let selectedImage = chooseImage.value;
-  if(selectedImage!==undefined)
-{
-  document.getElementById('preview').src='../images/'+selectedImage.slice(12,);
+
+function displayImage(e) {
+  if(e.files[0])
+  {
+    let reader = new FileReader();
+    reader.onload = (e)=>{
+      document.getElementById('preview').setAttribute('src', e.target.result);
+    }
+    reader.readAsDataURL(e.files[0]);
+  }
 }
-});
-setTimeout(()=>{
-    document.querySelector('.alert-cls').style.display="none";
-}, 3000);
+
+
 </script>
