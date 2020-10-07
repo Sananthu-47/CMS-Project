@@ -4,7 +4,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
       
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
 
 <?php 
@@ -27,5 +27,12 @@ while($row=mysqli_fetch_assoc($result))
   <a class='nav-link lead font-weight-bold' href='admin/index.php'>Admin</a>
 </li>
           </ul>
+
+          <ul class="navbar-nav">
+            <li class='nav-item mx-sm-2 mx-md-2 mx-lg-3 mx-xs-5 badge badge-danger'>
+              <a class='nav-link text-white font-weight-bold' href='includes/register.php'>Register</a>
+            </li>
+          </ul>
+
         </div>
       </nav>
