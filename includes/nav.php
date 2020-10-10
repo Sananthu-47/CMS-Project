@@ -9,8 +9,8 @@
 
 <?php 
 
-include "db.php";
-//global $connection;
+// include "db.php";
+ session_start();
 $query = "SELECT * FROM categories LIMIT 0,6";
 $result = mysqli_query($connection,$query);
 
@@ -24,7 +24,18 @@ while($row=mysqli_fetch_assoc($result))
 }
 ?>
 <li class='nav-item mx-sm-2 mx-md-2 mx-lg-3 mx-xs-5'>
-  <a class='nav-link lead font-weight-bold' href='admin/index.php'>Admin</a>
+<?php 
+if(isset($_SESSION['user_role']))
+{
+  if($_SESSION['user_role'] === 'Admin')
+  {
+    echo "<a class='nav-link lead font-weight-bold' href='admin/index.php'>Admin</a>";
+  }else{
+    echo "<a class='nav-link lead font-weight-bold' href='admin/index.php'>Profile</a>";
+  }
+}else{
+  echo "<a class='nav-link lead font-weight-bold' href='./includes/login.php'>Login</a>";
+} ?>
 </li>
           </ul>
 

@@ -72,3 +72,7 @@
   cursor: pointer;
 }
 
+.current-tab
+{
+  background-color: darkturquoise;
+}

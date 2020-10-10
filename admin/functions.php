@@ -449,7 +449,7 @@ if(isset($_POST['add_user']))
 
     if(empty($username) ||empty($user_firstname) || empty($user_role) || empty($user_email) || empty($user_password))
     {
-        die('Not all fields ever filled properly!'.mysqli_error($connection));
+        die('Not all fields are filled properly!'.mysqli_error($connection));
     }
 
     $query = "INSERT INTO users (username , user_firstname , user_lastname , user_role , user_image , user_email , user_password , user_date) VALUES ('{$username}','{$user_firstname}','{$user_lastname}','{$user_role}','{$user_image}','{$user_email}' , '{$user_password}' , now())";
@@ -486,11 +486,11 @@ function viewAllUser()
             <td>{$user_firstname}</td>
             <td>{$user_lastname}</td>
             <td>{$user_email}</td>
-            <td><a href='../individual_post.php?post_id=$user_id'><img src='../images/{$user_image}' width='50' height='50'/></a></td>
+            <td><a href=''><img src='../images/{$user_image}' width='50' height='50'/></a></td>
             <td>{$user_date}</td>
             <td>{$user_role}</td>
-            <td class='text-center'><button class='btn btn-info'><a class='alert-link' href='users.php?delete={$user_id}'><i class='fa fa-trash text-white' aria-hidden='true'></i></a></button></td>
-            <td class='text-center'><button class='btn btn-success'><a class='alert-link' href='users.php?q=edit_user&user_id={$user_id}'><i class='fa fa-edit text-white' aria-hidden='true'></i></a></button></td>
+            <td class='text-center'><a class='alert-link' href='users.php?delete={$user_id}'><button class='btn btn-info'><i class='fa fa-trash text-white' aria-hidden='true'></i></button></a></td>
+            <td class='text-center'><a class='alert-link' href='users.php?q=edit_user&user_id={$user_id}'><button class='btn btn-success'><i class='fa fa-edit text-white' aria-hidden='true'></i></button></a></td>
             </tr>
             ";
         }

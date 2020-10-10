@@ -32,10 +32,10 @@ function addComment($post_id)
 
 function errorMsg($color,$msg)
 {
-    echo '<div class="alert-cls alert alert-'.$color.'">'.$msg.'</div>';
+    echo '<div class="text-center alert-cls alert alert-'.$color.'">'.$msg.'</div>';
 }
 
-function loginCheck()
+function loginCheck($location)
 { 
     global $connection;
     if(isset($_POST['login']))
@@ -43,10 +43,8 @@ function loginCheck()
         $email = mysqli_real_escape_string($connection,$_POST['email']);
         $password = mysqli_real_escape_string($connection,$_POST['password']);
 
-        if(empty($email) || empty($password))
+        if(!empty($email) && !empty($password))
         {
-            errorMsg('danger',"Any of the fields cannot be empty");
-        }
 
         $query = "SELECT * FROM users WHERE user_email = '{$email}'";
         $result = mysqli_query($connection,$query);
@@ -56,25 +54,35 @@ function loginCheck()
             die("Error occured: ".mysqli_error($result));
         }
 
-            while($row = mysqli_fetch_assoc($result))
-            {
+               $row = mysqli_fetch_array($result);
+               
                $ResponseEmail = $row['user_email'];
                $ResponsePassword = $row['user_password'];
+               $verified = password_verify($password,$ResponsePassword);
                $ResponseUsername = $row['username'];
                $ResponseRole = $row['user_role'];
                $ResponseId = $row['user_id'];
-            }
-    
-            if($email === $ResponseEmail && $password === $ResponsePassword)
+
+            if($email === $ResponseEmail && $verified == 1)
                {
                     $_SESSION['username'] = $ResponseUsername;
                     $_SESSION['user_role'] = $ResponseRole;
                     $_SESSION['user_id'] = $ResponseId;
-                    header("Location: ./admin/index.php");
+
+                    if($_SESSION['user_role']==='Admin')
+                    {
+                    header("Location: ".$location."index.php");
+                    }else
+                    if($_SESSION['user_role']==='Subscriber'){
+                        header("Location: ".$location."subscriber.php"); 
+                    }
+
                }else{
                 errorMsg('danger',"Password didnot match the email"); 
                }
-            
+        }else{
+            errorMsg('danger',"Any of the fields cannot be empty");
+        }
     }
 }
 

@@ -1,8 +1,8 @@
 
 <div class="card border-primary my-3">
 <?php 
-session_start(); 
-loginCheck(); ?>
+//session_start(); 
+loginCheck('./admin/'); ?>
             <div class="card-header h3">Login</div>
             <div class="card-body text-primary">
 

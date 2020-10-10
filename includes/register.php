@@ -29,11 +29,11 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Login</a>
+            <li class="nav-item mx-2">
+                <a class="nav-link h5" href="login.php">Login</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Register</a>
+            <li class="nav-item badge badge-info">
+                <a class="nav-link active h6" href="#">Register</a>
             </li>
         </ul>
 
@@ -83,7 +83,7 @@
          $alertCls = 'alert-danger';
      }else{
          
-         $query = "SELECT user_salt FROM users";
+         $query = "SELECT user_salt FROM users WHERE user_email = '{$user_email}'";
          $result = mysqli_query($connection,$query);
 
          if(!$result)
@@ -93,10 +93,8 @@
 
          $row = mysqli_fetch_array($result);
          $user_salt = $row['user_salt'];
-
-
-         $user_password = crypt($user_password,$user_salt);
-         $user_password_again = crypt($user_password_again,$user_salt);
+         
+         $encrypted_password = crypt($user_password,$user_salt);
 
          if($_FILES['user_image']['size'] <= 0)
          {
@@ -104,13 +102,15 @@
          }
 
 
-         $query = "INSERT INTO users (username , user_firstname , user_lastname , user_role , user_image , user_email , user_password , user_date) VALUES ('{$user_name}','{$user_firstname}','{$user_lastname}','{$user_role}','{$user_image}','{$user_email}' , '{$user_password}' , now())";
+         $query = "INSERT INTO users (username , user_firstname , user_lastname , user_role , user_image , user_email , user_password , user_date) VALUES ('{$user_name}','{$user_firstname}','{$user_lastname}','{$user_role}','{$user_image}','{$user_email}' , '{$encrypted_password}' , now())";
          $result = mysqli_query($connection,$query);
 
          if(!$result)
          {
              die("Error".mysqli_error($result));
          }else{
+             $_SESSION['user_role'] = $user_role;
+             $_SESSION['username'] = $user_name;
              header("Location: ../index.php");
          }
              }
@@ -266,6 +266,11 @@ function checker(value)
         element.classList.add('text-danger');
         element.classList.remove('text-success');
         statusNumber--;
+    }
+
+    if(statusNumber!==4)
+    {
+        document.getElementById('register').disabled=true;
     }
 
     if(statusNumber===4)

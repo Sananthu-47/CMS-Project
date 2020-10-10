@@ -6,7 +6,7 @@
 
 <?php 
 
-if($_SESSION['user_role']!=='Admin')
+if($_SESSION['user_role']!=='Admin'&&$_SESSION['user_role']!=='Subscriber')
 {
   header('Location: ../index.php');
 }
