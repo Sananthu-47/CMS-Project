@@ -44,14 +44,14 @@ while($row = mysqli_fetch_assoc($result))
             } ?>"><h1 class="text-primary"><?php echo $post_title ?></h1></a>
             <h6 class="text-dark">by <span class="text-primary"><?php echo "<a href='specific_user.php?post_user={$post_user}'>$post_user</a>"?></span></h6>
             <h6 class="text-dark"><?php echo $post_date?></h6>
-        <div style="height: 200px;" class="bg-light">
+        <div  class="bg-light">
         <a <?php
             if(isset($_SESSION['user_role']))
             {
             echo "href='individual_post.php?post_id=$post_id'";
             }else{
                     echo "href='includes/login.php'";
-            } ?>"><img src="./images/<?php echo $post_image ?>" class="col-lg-10 col-xl-9 col-md-11 col-xs-12 col-sm-12 h-100" alt="Loading image"></a>
+            } ?>"><img src="./images/<?php echo $post_image ?>" class="w-75 h-100" alt="Loading image"></a>
         </div>
         <div class="row d-block bg-light w-75 mt-2">
             <p><?php echo $post_content?></p>
