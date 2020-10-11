@@ -31,7 +31,7 @@ if(isset($_SESSION['user_role']))
   {
     echo "<a class='nav-link lead font-weight-bold' href='admin/index.php'>Admin</a>";
   }else{
-    echo "<a class='nav-link lead font-weight-bold' href='admin/index.php'>Profile</a>";
+    echo "<a class='nav-link lead font-weight-bold' href='admin/subscriber.php'>Profile</a>";
   }
 }else{
   echo "<a class='nav-link lead font-weight-bold' href='./includes/login.php'>Login</a>";

@@ -9,7 +9,6 @@
             <th>ID</th>
             <th>Author</th>
             <th>Date</th>
-            <th>Email</th>
             <th>Related Post</th>
             <th>Comment</th>
             <th>Status</th>

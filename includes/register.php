@@ -91,7 +91,7 @@
              die("Couldn't find the salt".mysqli_error($result));
          }
 
-         $row = mysqli_fetch_array($result);
+         $row = mysqli_fetch_assoc($result);
          $user_salt = $row['user_salt'];
          
          $encrypted_password = crypt($user_password,$user_salt);
@@ -109,9 +109,8 @@
          {
              die("Error".mysqli_error($result));
          }else{
-             $_SESSION['user_role'] = $user_role;
              $_SESSION['username'] = $user_name;
-             header("Location: ../index.php");
+             header("Location: login.php");
          }
              }
 

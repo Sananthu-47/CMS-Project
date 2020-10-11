@@ -45,6 +45,11 @@
     <div class="cotainer">
         <div class="row justify-content-center">
             <div class="col-md-8">
+           <?php if(isset($_SESSION['username'])) 
+                    {
+                        echo "<span class='text-center h3'>It's time to login</span>";
+                    }
+           ?>
                     <div class="card">
                         <div class="card-header">Login</div>
                         <div class="card-body">

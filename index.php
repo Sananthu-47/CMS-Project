@@ -31,15 +31,33 @@ while($row = mysqli_fetch_assoc($result))
 
   ?>
 <div class="d-flex flex-column justify-content-center m-2">
-        <a href="individual_post.php?post_id=<?php echo $post_id; ?>"><h1 class="text-primary"><?php echo $post_title ?></h1></a>
+        <a <?php
+            if(isset($_SESSION['user_role']))
+            {
+            echo "href='individual_post.php?post_id=$post_id'";
+            }else{
+                    echo "href='includes/login.php'";
+            } ?>"><h1 class="text-primary"><?php echo $post_title ?></h1></a>
             <h6 class="text-dark">by <span class="text-primary"><?php echo "<a href='specific_user.php?post_user={$post_user}'>$post_user</a>"?></span></h6>
             <h6 class="text-dark"><?php echo $post_date?></h6>
         <div style="height: 200px;" class="bg-light">
-        <a href="individual_post.php?post_id=<?php echo $post_id; ?>"><img src="./images/<?php echo $post_image ?>" class="col-lg-10 col-xl-9 col-md-11 col-xs-12 col-sm-12 h-100" alt="Loading image"></a>
+        <a <?php
+            if(isset($_SESSION['user_role']))
+            {
+            echo "href='individual_post.php?post_id=$post_id'";
+            }else{
+                    echo "href='includes/login.php'";
+            } ?>"><img src="./images/<?php echo $post_image ?>" class="col-lg-10 col-xl-9 col-md-11 col-xs-12 col-sm-12 h-100" alt="Loading image"></a>
         </div>
         <div class="row d-block bg-light w-75 mt-2">
             <p><?php echo $post_content?></p>
-            <a href="individual_post.php?post_id=<?php echo $post_id; ?>"><button class="bg-primary text-white">Read more</button></a>
+            <a <?php
+            if(isset($_SESSION['user_role']))
+            {
+            echo "href='individual_post.php?post_id=$post_id'";
+            }else{
+                    echo "href='includes/login.php'";
+            } ?>><button class="bg-primary text-white">Read more</button></a>
         </div>  
 </div>
   <?php

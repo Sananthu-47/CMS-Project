@@ -4,16 +4,15 @@ function addComment($post_id)
     global $connection;
     if(isset($_POST['submit']))
 {
-    $comment_author = $_POST['username'];
-    $comment_email = $_POST['email'];
+    $comment_author = $_SESSION['username'];
     $comment_content = $_POST['comment'];
     $comment_post_id = $post_id;
 
-    if(empty($comment_author)  || empty($comment_email) || empty($comment_content))
+    if(empty($comment_content))
     {
         die('Any of the fields should not be left blank plaese fill all fields');
     }
-    $query = "INSERT INTO comments (comment_author , comment_date , comment_email , comment_content , comment_post_id) VALUES ('{$comment_author}',now(),'{$comment_email}','{$comment_content}','{$comment_post_id}')";
+    $query = "INSERT INTO comments (comment_author , comment_date  , comment_content , comment_post_id) VALUES ('{$comment_author}',now(),'{$comment_content}','{$comment_post_id}')";
     $result = mysqli_query($connection,$query);
 
     if(!$result)

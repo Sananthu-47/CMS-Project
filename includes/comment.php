@@ -4,10 +4,7 @@
 ?>
 <form action="" method="post">
     <h2>Comment here..</h2>
-    <label for="username">Username</label>
-    <input type="text" name="username" class="form-control" placeholder="username">
-    <label for="email">Email</label>
-    <input type="email" name="email" class="form-control" placeholder="email">
+    <h3>Logged in as <span class='text-info'><?php echo $_SESSION['username']; ?></span></h3>
     <textarea name="comment" class="form-control my-2" placeholder="Comment" id="" cols="30" rows="10"></textarea>
     <input type="submit" name="submit" class="btn btn-primary col-md-3 col-sm-2 my-2" value="Submit">
     </form>

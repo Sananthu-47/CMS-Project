@@ -313,7 +313,6 @@ function viewAllComments()
             $comment_id = $row['comment_id'];
             $comment_author = $row['comment_author'];
             $comment_date = $row['comment_date'];
-            $comment_email = $row['comment_email'];
             $comment_status = $row['comment_status'];
             $comment_post_id = $row['comment_post_id'];
             $comment = $row['comment_content'];
@@ -322,8 +321,7 @@ function viewAllComments()
             <tr>
             <td>{$comment_id}</td>
             <td>{$comment_author}</td>
-            <td>{$comment_date}</td>
-            <td>{$comment_email}</td>";
+            <td>{$comment_date}</td>";
 
             $query = "SELECT * FROM posts WHERE post_id = $comment_post_id";
             $response = mysqli_query($connection,$query);
@@ -524,15 +522,20 @@ function updateUser($user_id)
     $user_image = time(). '_' .$_FILES['user_image']['name'];
     $user_image_temp = $_FILES['user_image']['tmp_name'];
     $user_email = $_POST['user_email'];
-    $user_password = $_POST['user_password'];
 
+    if($_FILES['user_image']['size'] <= 0)
+    {
+        $user_image = "profile.jpg";
+    }
+
+    $_SESSION['user_id'] = $user_id;
     $_SESSION['user_email'] = $user_email;
     $_SESSION['username'] = $username;
     $_SESSION['user_role'] = $user_role;
 
     move_uploaded_file($user_image_temp,"../images/$user_image");
 
-    if(empty($username) ||empty($user_firstname) || empty($user_role) || empty($user_email) || empty($user_password))
+    if(empty($username) ||empty($user_firstname) || empty($user_role) || empty($user_email))
     {
         die('Not all fields ever filled properly!'.mysqli_error($connection));
     }
@@ -547,7 +550,7 @@ function updateUser($user_id)
             }
             }
 
-        $query = "UPDATE users SET username = '{$username}' , user_firstname = '{$user_firstname}' ,user_lastname = '{$user_lastname}' ,user_email = '{$user_email}' ,user_image = '{$user_image}' ,user_password = '{$user_password}' ,user_role = '{$user_role}' WHERE user_id = '{$user_id}' ";
+        $query = "UPDATE users SET username = '{$username}' , user_firstname = '{$user_firstname}' ,user_lastname = '{$user_lastname}' ,user_email = '{$user_email}' ,user_image = '{$user_image}' ,user_role = '{$user_role}' WHERE user_id = '{$user_id}' ";
 
         $result = mysqli_query($connection,$query);
         if(!$result)
@@ -557,7 +560,6 @@ function updateUser($user_id)
             header("Location:users.php?q=view_all_users");
         }
         }
-        
 }
 
 

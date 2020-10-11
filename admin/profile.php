@@ -32,13 +32,12 @@ while($row = mysqli_fetch_assoc($result))
   $user_role = $row['user_role'];
   $user_image = $row['user_image'];
   $user_email = $row['user_email'];
-  $user_password = $row['user_password'];
 }
 
 ?>
 
            <div class="col-sm-12 col-lg-10 d-flex ">
-            <?php  updateUser($user_id);  ?>
+            <?php updateUser($user_id);  ?>
 <form action="" method="post" class="w-100" enctype="multipart/form-data">
     <div class="form-group col-sm-12 col-md-6">
       <label for="username">Username</label>
@@ -71,10 +70,6 @@ while($row = mysqli_fetch_assoc($result))
     <label for="user_email">Email</label>
     <input name="user_email" type="email" class="form-control" id="author" placeholder="email" value="<?php echo $user_email; ?>">
   </div>
-  <div class="form-group col-sm-12 col-md-6">
-      <label for="tags">Password</label>
-      <input name="user_password" type="password" class="form-control" id="tags" placeholder="password" value="<?php echo $user_password; ?>">
-    </div>
     <div class="form-group col-sm-12 col-lg-6">
       <label for="user_image">Image</label>
       <input name="user_image" class='d-none' onchange="displayImage(this)" type="file" id="image"><br/>
