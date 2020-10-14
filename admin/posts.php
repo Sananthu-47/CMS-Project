@@ -33,6 +33,11 @@
                     case 'edit_post':
                         include "edit_post.php";
                         break;
+                    default :
+                    echo "<div class='table-responsive'>";
+                    include "view_all_posts.php";
+                    echo "</div>";
+                    break;
                 }
                 
 ?>                

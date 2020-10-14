@@ -199,8 +199,8 @@ function viewAllPost()
             <td><a href='../individual_post.php?post_id=$post_id'><img src='../images/{$row['post_image']}' width='100' height='50'/></a></td>
             <td>{$row['post_tags']}</td>
             <td>{$row['post_status']}</td>
-            <td class='text-center'><a class='alert-link conform' href='posts.php?delete={$post_id}'><button class='btn btn-info'><i class='fa fa-trash text-white' aria-hidden='true'></i></button></a></td>
-            <td class='text-center'><a class='alert-link' href='posts.php?q=edit_post&post_id={$post_id}'><button class='btn btn-success'><i class='fa fa-edit text-white' aria-hidden='true'></i></button></a></td>
+            <td class='text-center'><a class='alert-link conform' href='posts.php?delete=$post_id'><button class='btn btn-info'><i class='fa fa-trash text-white' aria-hidden='true'></i></button></a></td>
+            <td class='text-center'><a class='alert-link' href='posts.php?q=edit_post&post_id=$post_id'><button class='btn btn-success'><i class='fa fa-edit text-white' aria-hidden='true'></i></button></a></td>
             </tr>
             ";
         }
@@ -257,7 +257,7 @@ function selectBox($checkBoxArray)
     {
         errorMsg("danger","Done");
     }else{
-        die("Error");
+        die("Error".mysqli_error($result));
     }
 }
 
